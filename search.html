@@ -13,7 +13,7 @@
 <script>
     $(function(){
 		var term = "data analysis"; //or get the value from a textbox user input; you can Google how to do it.
-		var parameter="?q="+term+"&startIndex=30&maxResults=10"; 
+		var parameter="?q="+term+"&startIndex=0&maxResults=10"; 
 		var service_point="https://www.googleapis.com/books/v1/volumes/"+parameter;
         $.getJSON(service_point, function (json)
         {
