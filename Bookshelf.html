@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<style>
+     body {
+       background-color: grey;
+       font-family: arial;
+		  
+</style>
+<li><a href="index.html">Home Page</a></li>
+<li><a href="Milestone2.html">Milestone 2</a></li>
+<head>
+    <meta charset="utf-8">
+
+    <title>Bookshelf</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            var url = "https://www.googleapis.com/books/v1/users/113826519360139234055/bookshelves/0/volumes";
+            $.getJSON(url, function(json) {
+
+                var length = json.items.length;
+
+                for (i = 0; i < length; i++) {
+                    var title = json.items[i].volumeInfo.title;
+                    var pic = json.items[i].volumeInfo.imageLinks.smallThumbnail;
+                    var id = json.items[i].id;
+
+                    $("#result").append("<div id=\"b" + i + "\" style=\"margin-bottom: 5px; clear: both;\"></div>");
+                    $("#b" + i).html("<a href =\"Book Details.html?id=" + id + "\">" + title + "</a><br>");
+                    $("#b" + i).append("<img style=\"float:center; margin: 4px; clear:both;\" src=\"" + pic + "\"alt=thumbnail picture of the book.\" />");
+                }
+            });
+
+        });
+    </script>
+   
+</head>
+
+<body>
+        <h1>My Bookshelf</h1>
+        <p id="result"></p>
+    </div>
+</body>
+
+</html>

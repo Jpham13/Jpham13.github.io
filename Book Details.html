@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Book Details</title>
+<meta charset="UTF-8" />
+<script
+src="https://code.jquery.com/jquery-3.6.1.min.js">	
+</script>
+ 	
+<style>
+     body {
+       background-color: grey;
+       font-family: arial;
+		  
+</style>	
+</head>
+<body>
+<h1>Book Details</h1>
+<div id = "result">	
+</div>
+	    
+<script >
+			
+	$(document).ready(function(){
+			
+		var item = window.location.search.split('id=')[1];
+		var url = "https://www.googleapis.com/books/v1/volumes/";
+
+			$.getJSON(url + item, function(json){
+								
+				json = json.volumeInfo;
+						
+					$('#result').html('<h2> <a href = "' + json.infoLink + '">' + json.title +'</a></h2>'  			   
+					+'<img id="picture" src="' + json.imageLinks.small + '">' 
+					+'<p> <b>Subtitle:</b> '+ json.subtitle +'</p>'
+					+'<p> <b>Description: </b>' + json.description + '</p>'
+					+'<p> <b>Author: </b>' + json.authors + '</p>' 
+					+'<p> <b>Publisher: </b>' + json.publisher + '</p>'
+					+'<p> <b>Published Date: </b>' + json.publishedDate + '</p>'
+					+'<p> <b>ISBN_10: </b>' + json.industryIdentifiers[0].identifier + '</p>'
+					+'<p> <b>ISBN_13: </b>' + json.industryIdentifiers[1].identifier + '</p>'
+					+'<p> <b>Page Count: </b>' + json.printedPageCount + '</p>'   
+					+'<p> <b>Catagories: </b>' + json.categories + '</p>'
+					+'<p> <b>Preview: </b>'+ '<a href ="' + json.previewLink + '">'+ json.previewLink +'</a> </p>');					
+				}); 
+			});	
+			</script>		
+		
+	</body>
+</html>
